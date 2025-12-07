@@ -31,3 +31,8 @@ function calculate(a, b, op) {
 function authorize(role) {
     return role === Role.Admin ? "Access granted" : "Access denied";
 }
+function jsonParser(str) {
+    return JSON.parse(str);
+}
+const parsedValue = jsonParser(`{"name":"Arian"}`);
+console.log(parsedValue.name);

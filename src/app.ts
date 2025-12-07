@@ -60,3 +60,18 @@ function calculate(a: number, b: number, op: Operation) {
 function authorize(role: Role) {
   return role === Role.Admin ? "Access granted" : "Access denied";
 }
+
+//!.........................................
+// The return of JSON.parse is any by default which is bad, it let's you call parsedValue.email without
+// throwing an error even when it doesn't exist
+function jsonParser(str: string): unknown {
+  return JSON.parse(str);
+}
+
+//if we don't define the type UserName, we cannot access parsedValue.name because the type of parsedValue is unknown
+type UserName = { name: string };
+const parsedValue = jsonParser(`{"name":"Arian"}`) as UserName;
+
+console.log(parsedValue.name);
+// parsedValue.email; it gives an error
+//!.........................................
