@@ -17,3 +17,18 @@ interface Client2 {
   name: string;
   age: number;
 }
+
+//* funcions => preferred to use type
+
+type AddFn = (a: number, b: number) => number;
+
+interface Add {
+  (a: number, b: number): number;
+}
+
+interface Teacher {
+  name: string;
+  age: number;
+  speak(): void;
+  calcSalary(a: number): number;
+}
