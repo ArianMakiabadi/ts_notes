@@ -1,0 +1,3 @@
+TypeScript notes and quick references I’m compiling as I learn. This repo is a lightweight sandbox with short, copy‑pasteable snippets focused on day‑to‑day TypeScript: common types, interfaces/classes, unions & generics, and practical patterns. Check `src/app.ts` for the general playground, `src/interface.ts` for interface/type alias examples, and `src/advancedTypes.ts` for unions, intersections, generics, and more.
+
+Build and type‑check with `tsc` (see `tsconfig.json`). Optionally run snippets with `npx ts-node src/app.ts`. The goal is fast iteration and quick recall; keep it simple, try ideas, and learn by compiling.
