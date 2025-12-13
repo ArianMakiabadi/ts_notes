@@ -9,7 +9,7 @@ function processInput(x: StringOrNumber) {
   if (typeof x === "number") return x.toFixed(2);
 }
 
-//* in operator ==> used for objects
+//* 2. in operator ==> used for objects
 
 interface Circle {
   radius: number;
@@ -31,7 +31,7 @@ function calcArea(shape: Shape) {
   if ("sideLength" in shape) return shape.sideLength ** 2;
 }
 
-//* instanceof ==> only used for classes, not interfaces
+//*3. instanceof ==> only used for classes, not interfaces
 
 class Cat {
   purr() {
@@ -49,3 +49,39 @@ function makeSound(animal: Dog | Cat) {
   if (animal instanceof Dog) animal.bark;
   else animal.purr;
 }
+
+//! 4. is operator => user-defiend method => to check complex types (user defiend)
+interface Bird {
+  fly(): void;
+}
+
+interface Fish {
+  swim(): void;
+}
+
+type Animal = Fish | Bird;
+
+//! *********************************************
+//! The return of this function is boolean
+//! However, if it returns true, ts will treat animal as Fish
+function isFish(animal: Animal): animal is Fish {
+  return (animal as Fish).swim !== undefined;
+}
+//! *********************************************
+
+function checkAnimal(animal: Animal) {
+  if (isFish(animal)) {
+    //! it logs object, because type checking only happens during compilition
+    //! JavaScript has no idea what Animal or Fish is, it just sees a normal object
+    console.log(typeof animal);
+    animal.swim;
+  } else {
+    animal.fly;
+  }
+}
+const fish: Fish = {
+  swim() {
+    console.log("swimming");
+  },
+};
+checkAnimal(fish);

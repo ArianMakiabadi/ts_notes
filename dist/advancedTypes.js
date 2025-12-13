@@ -30,3 +30,21 @@ function makeSound(animal) {
     else
         animal.purr;
 }
+function isFish(animal) {
+    return animal.swim !== undefined;
+}
+function checkAnimal(animal) {
+    if (isFish(animal)) {
+        console.log(typeof animal);
+        animal.swim;
+    }
+    else {
+        animal.fly;
+    }
+}
+const fish = {
+    swim() {
+        console.log("swimming");
+    },
+};
+checkAnimal(fish);
