@@ -11,25 +11,25 @@ function processInput(x: StringOrNumber) {
 
 //* 2. in operator ==> used for objects
 
-interface Circle {
-  radius: number;
-}
+// interface Circle {
+//   radius: number;
+// }
 
-interface Rectangle {
-  width: number;
-  length: number;
-}
+// interface Rectangle {
+//   width: number;
+//   length: number;
+// }
 
-interface Square {
-  sideLength: number;
-}
+// interface Square {
+//   sideLength: number;
+// }
 
-type Shape = Circle | Rectangle | Square;
-function calcArea(shape: Shape) {
-  if ("radius" in shape) return Math.PI * shape.radius ** 2;
-  if ("width" in shape && "length" in shape) return shape.width * shape.length;
-  if ("sideLength" in shape) return shape.sideLength ** 2;
-}
+// type Shape = Circle | Rectangle | Square;
+// function calcArea(shape: Shape) {
+//   if ("radius" in shape) return Math.PI * shape.radius ** 2;
+//   if ("width" in shape && "length" in shape) return shape.width * shape.length;
+//   if ("sideLength" in shape) return shape.sideLength ** 2;
+// }
 
 //*3. instanceof ==> only used for classes, not interfaces
 
@@ -50,7 +50,7 @@ function makeSound(animal: Dog | Cat) {
   else animal.purr;
 }
 
-//! 4. is operator => user-defiend method => to check complex types (user defiend)
+//* 4. is operator => user-defiend method => to check complex types (user defiend)
 interface Bird {
   fly(): void;
 }
@@ -85,3 +85,35 @@ const fish: Fish = {
   },
 };
 checkAnimal(fish);
+
+//* 5. discriminated unions => combine union and literal types to create a new type (check point 2 and compare)
+//* cannot be used in complex types
+
+interface Circle {
+  radius: number;
+  type: "circle"; // it doesn't specifically have to be type, you can write kind or folan or...
+}
+
+interface Rectangle {
+  width: number;
+  length: number;
+  type: "rectangle";
+}
+
+interface Square {
+  sideLength: number;
+  type: "square";
+}
+
+type Shape = Circle | Rectangle | Square;
+
+function calcArea(shape: Shape) {
+  switch (shape.type) {
+    case "circle":
+      return Math.PI * shape.radius ** 2;
+    case "rectangle":
+      return shape.length * shape.width;
+    case "square":
+      return shape.sideLength ** 2;
+  }
+}

@@ -6,14 +6,6 @@ function processInput(x) {
     if (typeof x === "number")
         return x.toFixed(2);
 }
-function calcArea(shape) {
-    if ("radius" in shape)
-        return Math.PI * shape.radius ** 2;
-    if ("width" in shape && "length" in shape)
-        return shape.width * shape.length;
-    if ("sideLength" in shape)
-        return shape.sideLength ** 2;
-}
 class Cat {
     purr() {
         console.log("Meow!");
@@ -48,3 +40,13 @@ const fish = {
     },
 };
 checkAnimal(fish);
+function calcArea(shape) {
+    switch (shape.type) {
+        case "circle":
+            return Math.PI * shape.radius ** 2;
+        case "rectangle":
+            return shape.length * shape.width;
+        case "square":
+            return shape.sideLength ** 2;
+    }
+}
