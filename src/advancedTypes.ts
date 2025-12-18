@@ -117,3 +117,10 @@ function calcArea(shape: Shape) {
       return shape.sideLength ** 2;
   }
 }
+
+//? Nullish coalescing ==> ??
+
+// if we use || => if the values of userInput are "" or 0 or null or undefiend, it will concieder "default value"
+// however if we use ?? instead of || => "" and 0 are valid values, if it's undefiend or null; it will consider "default value"
+const userInput = "";
+const processedData = userInput || "default value";

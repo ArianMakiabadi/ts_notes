@@ -50,3 +50,5 @@ function calcArea(shape) {
             return shape.sideLength ** 2;
     }
 }
+const userInput = "";
+const processedData = userInput || "default value";
