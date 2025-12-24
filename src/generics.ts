@@ -49,3 +49,9 @@ type Person2 = {
 };
 
 type RequiredPerson = Required<Person2>;
+
+//? Omit constraint => create a new type based on the previous ones without a specific property
+type PersonWithoutEmail = Omit<Person, "email">;
+
+//? Pick => create a new type based on the previous ones by picking the properties that you need
+type PersonWithEmailAndName = Pick<Person, "name" | "email">;
