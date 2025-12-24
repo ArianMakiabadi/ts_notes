@@ -19,3 +19,33 @@ function getProperty<T extends object, U extends keyof T>(obj: T, key: U) {
 
 const user = { name: "Arian", id: 1 };
 getProperty(user, "id"); // we are only allowed to write name or id as keys, other random values are not allowed
+
+//* Generic utility types
+//? partial constraint
+// we use them when we don't need all the predefiend properties, some of them might be undefiend
+
+interface Person {
+  name: string;
+  age: number;
+  email: string;
+}
+
+//! Don't do this:
+// interface PartialPerson {
+//   name?: string;
+//   age?: number;
+//   email?: string;
+// }
+
+//! Instead use Partial:
+type PartialPerson = Partial<Person>;
+
+//? required constraint => the opposite of partial => it makes optional properties, required
+
+type Person2 = {
+  name?: string;
+  age?: number;
+  email?: string;
+};
+
+type RequiredPerson = Required<Person2>;
